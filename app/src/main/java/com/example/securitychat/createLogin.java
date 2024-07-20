@@ -1,7 +1,6 @@
 package com.example.securitychat;
 
-import static com.example.securitychat.R.id.not_button;
-import static com.example.securitychat.R.id.yes_button;
+import static com.example.securitychat.R.id.create_button;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,38 +13,37 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class homeScreen extends AppCompatActivity {
+public class createLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home_screen);
-
+        setContentView(R.layout.activity_create_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        Button buttonOpenLogin = findViewById(yes_button);
-        buttonOpenLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(homeScreen.this, loginScreen.class);
-                startActivity(intent);
-            finish();
-            }
-
-        });
-
-        Button buttonCreateLogin =findViewById(not_button);
+        Button buttonCreateLogin =findViewById(create_button);
         buttonCreateLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(homeScreen.this, createLogin.class );
+                Intent intent = new Intent(createLogin.this, loginScreen.class );
                 startActivity(intent);
-            finish();
+                finish();
+            }
+        });
+
+        Button backButton = findViewById(R.id.back_button2);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(createLogin.this, homeScreen.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
